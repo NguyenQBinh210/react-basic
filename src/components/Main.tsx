@@ -1,12 +1,11 @@
 import LandingPage from "./LandingPage";
-import ListProduct from "./ListProduct";
 
 const Main = () => {
   //Fracment
   return (
     <>
       <section><LandingPage/></section>
-      <section className="list-container"><ListProduct/></section>
+      <section className="list-container"></section>
     </>
   );
 };

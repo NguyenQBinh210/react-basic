@@ -1,20 +1,32 @@
 //Tên componet phải viết dưới dạng PascalCase(Viết hoa chữ cái đầu)
 // function App(){
-
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./components/Main";
 //inline
 //css module
 //file riêng
 
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import { useEffect, useState } from "react";
+import ListProduct from "./components/ListProduct";
+import { ProductElement } from "./types/product";
+import data from "./data.json";
+
 // }
 const App = () => {
+  const [products, setProducts] = useState<ProductElement[]>([]);
+  useEffect(() => {
+    // Giả lập lấy dữ liệu từ file JSON
+    setProducts(data);
+  }, []);
   return (
     <div className="container">
       <Header />
       <div className="main-content">
         <Main />
+        <div className="product-container">
+          <ListProduct products={products} />
+        </div>
       </div>
       <Footer />
     </div>
@@ -35,7 +47,7 @@ export default App;
 //                 rating = {4.00}
 //                   price = {20.00}
 //                  salePrice = {39.00}/>
-//     Cach 3: <Product {...product}/>  
+//     Cach 3: <Product {...product}/>
 //     Cach 4: <Product data = {product}/> Thuong dung
 //  </div>
 //   );
