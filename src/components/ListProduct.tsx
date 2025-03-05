@@ -1,20 +1,28 @@
-import { ProductElement } from "../types/product";
+import { useEffect, useState } from "react";
+import { ProductElement} from "../types/product";
+import data from "../data.json";
 
-interface ListProductProps {
-  products: ProductElement[];
-}
+const ListProduct = () => {
+  const [products, setProducts] = useState<ProductElement[]>([]);
 
-const ListProduct = ({ products }: ListProductProps) => {
+  useEffect(() => {
+    setProducts({data});
+  }, []);
+
   return (
     <div className="list">
-      {products.map((product) => (
-        <div key={product.id} className="list-item">
-          <img src={product.thumbnail} alt={product.title} />
-          <h3>{product.title}</h3>
-          <p>{product.description}</p>
-          <p>Giá: ${product.price}</p>
-        </div>
-      ))}
+      {products.length === 0 ? (
+        <p>Đang tải dữ liệu...</p>
+      ) : (
+        products.map((product) => (
+          <div key={product.id} className="list-item">
+            <img src={product.thumbnail} alt={product.title} />
+            <h3>{product.title}</h3>
+            <p>{product.description}</p>
+            <p>Giá: ${product.price}</p>
+          </div>
+        ))
+      )}
     </div>
   );
 };
